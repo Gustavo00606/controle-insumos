@@ -41,3 +41,15 @@ while True:
                 print (f"Quantidade: {dicionario['quantidade']} {dicionario['unidade_de_medida']}")
                 print (f"Estoque mínimo: {dicionario['estoque_minimo']} {dicionario['unidade_de_medida']}")
         print("-"*25)
+    if opcao == "3":
+        encontrado = False
+        cod = input("Qual o código do produto? ")
+        for dicionario in insumos:
+            if cod == dicionario["codigo"]:
+                entrada = float(input("Qual quantidade entrou? "))
+                dicionario["quantidade"] += entrada
+                print("Estoque atualizado")
+                encontrado = True
+                break
+        if encontrado == False:
+            print("Este código não pertence a nenhum produto cadastrado")
