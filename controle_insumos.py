@@ -15,3 +15,18 @@ while True:
     if opcao == "0":
         print("Programa encerrado")
         break
+    if opcao == "1":
+        estrutura = {}
+        codigo = input("Digite o código: ")
+        nome = input("Digite o nome do insumo: ")
+        quantidade = float(input("Digite a quantidade: "))
+        unidade_medida = input("Digite a unidade de medida: ")
+        estoque_minimo = float(input("Digite o estoque minimo: "))
+        estrutura.update({
+            "codigo": codigo,
+            "nome": nome,
+            "quantidade": quantidade,
+            "unidade_de_medida": unidade_medida,
+            "estoque_minimo": estoque_minimo})
+        insumos.append(estrutura)
+        print("Insumo cadastrado")
