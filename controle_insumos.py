@@ -88,3 +88,16 @@ while True:
                 break
         if encontrado == False:
             print("Este código não pertence a nenhum produto cadastrado")
+    if opcao == "6":
+            tem_estoque_baixo = False
+            for dicionario in insumos:
+                if dicionario["quantidade"] <= dicionario["estoque_minimo"]:
+                    print("-"*25)
+                    print (f"Código: {dicionario['codigo']}")
+                    print (f"Nome: {dicionario['nome']}")
+                    print (f"Quantidade: {dicionario['quantidade']} {dicionario['unidade_de_medida']}")
+                    print (f"Estoque mínimo: {dicionario['estoque_minimo']} {dicionario['unidade_de_medida']}")
+                    tem_estoque_baixo = True
+            if tem_estoque_baixo == False:
+                print("Nenhum insumo com estoque baixo")
+        
