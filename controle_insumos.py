@@ -47,9 +47,30 @@ while True:
         for dicionario in insumos:
             if cod == dicionario["codigo"]:
                 entrada = float(input("Qual quantidade entrou? "))
-                dicionario["quantidade"] += entrada
-                print("Estoque atualizado")
+                if entrada > 0:
+                    dicionario["quantidade"] += entrada
+                    print("Estoque atualizado")
+                else:
+                    print("Entrada invalida")
                 encontrado = True
                 break
         if encontrado == False:
             print("Este código não pertence a nenhum produto cadastrado")
+    if opcao == "4":
+                encontrado = False
+                cod = input("Qual o código do produto? ")
+                for dicionario in insumos:
+                    if cod == dicionario["codigo"]:
+                        saida = float(input("Qual quantidade saiu? "))
+                        if saida <= 0:
+                            print("Saída inválida")
+                        else:
+                            if saida <= dicionario["quantidade"]:
+                                dicionario["quantidade"] -= saida
+                                print("Estoque atualizado")
+                            else:
+                                print(f"A saída é maior que a quantidade atual do estoque({dicionario['quantidade']})")
+                        encontrado = True
+                        break
+                if encontrado == False:
+                    print("Este código não pertence a nenhum produto cadastrado")
