@@ -74,3 +74,17 @@ while True:
                         break
                 if encontrado == False:
                     print("Este código não pertence a nenhum produto cadastrado")
+    if opcao == "5":
+        encontrado = False
+        cod = input("Qual o código do produto? ")
+        for dicionario in insumos:
+            if cod == dicionario["codigo"]:
+                print("-"*25)
+                print (f"Código: {dicionario['codigo']}")
+                print (f"Nome: {dicionario['nome']}")
+                print (f"Quantidade: {dicionario['quantidade']} {dicionario['unidade_de_medida']}")
+                print (f"Estoque mínimo: {dicionario['estoque_minimo']} {dicionario['unidade_de_medida']}")
+                encontrado = True
+                break
+        if encontrado == False:
+            print("Este código não pertence a nenhum produto cadastrado")
