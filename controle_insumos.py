@@ -30,3 +30,14 @@ while True:
             "estoque_minimo": estoque_minimo})
         insumos.append(estrutura)
         print("Insumo cadastrado")
+    if opcao == "2":
+        if insumos == []:
+            print("Nenhum insumo cadastrado")
+        else:
+            for dicionario in insumos:
+                print("-"*25)
+                print (f"Código: {dicionario['codigo']}")
+                print (f"Nome: {dicionario['nome']}")
+                print (f"Quantidade: {dicionario['quantidade']} {dicionario['unidade_de_medida']}")
+                print (f"Estoque mínimo: {dicionario['estoque_minimo']} {dicionario['unidade_de_medida']}")
+        print("-"*25)
