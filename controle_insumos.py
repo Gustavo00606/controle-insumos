@@ -1,4 +1,5 @@
-insumos = []
+import json
+from pathlib import Path
 
 def exibir_menu():
     print("\n===== CONTROLE DE INSUMOS =====")
@@ -31,6 +32,7 @@ def cadastrar_insumo(insumos):
         "unidade_de_medida": unidade_medida,
         "estoque_minimo": estoque_minimo})
     insumos.append(estrutura)
+    salvar_dados(insumos)
     print("Insumo cadastrado")
 
 def listar_insumos(insumos):
@@ -49,6 +51,7 @@ def registrar_entrada(insumos):
             entrada = float(input("Qual quantidade entrou? "))
             if entrada > 0:
                 dicionario["quantidade"] += entrada
+                salvar_dados(insumos)
                 print("Estoque atualizado")
             else:
                 print("Entrada invalida")
@@ -68,6 +71,7 @@ def registrar_saida(insumos):
             else:
                 if saida <= dicionario["quantidade"]:
                     dicionario["quantidade"] -= saida
+                    salvar_dados(insumos)
                     print("Estoque atualizado")
                 else:
                     print(f"A saída é maior que a quantidade atual do estoque({dicionario['quantidade']})")
@@ -95,7 +99,23 @@ def estoque_baixo(insumos):
             tem_estoque_baixo = True
     if tem_estoque_baixo == False:
         print("Nenhum insumo com estoque baixo")
-    
+
+PASTA_PROJETO = Path(__file__).resolve().parent
+ARQUIVO_JSON = PASTA_PROJETO / "insumos.json"
+def carregar_dados():
+    try:
+        with open(ARQUIVO_JSON, "r", encoding="utf-8") as arquivo:
+            insumos = json.load(arquivo)
+            return insumos
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
+
+def salvar_dados(dados):
+    with open(ARQUIVO_JSON, "w", encoding="utf-8") as arquivo:
+        json.dump(dados, arquivo, indent=4, ensure_ascii=False)
+
+# Main
+insumos = carregar_dados()
 
 while True:
     exibir_menu()
@@ -120,5 +140,6 @@ while True:
 
     if opcao == "5":
         consultar_insumo(insumos)
+
     if opcao == "6":
         estoque_baixo(insumos)
